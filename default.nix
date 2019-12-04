@@ -6,10 +6,16 @@
 { pkgs ? let nixpkgs = import ./nixpkgs.nix; in import nixpkgs {}
 }:
 
-{
+rec {
   complx-tools = import ./complx-tools.nix { inherit pkgs; };
+
   cs2110-gba-linker-script = import ./cs2110-gba-linker-script.nix { inherit pkgs; };
   cs2110-vbam-sdl = import ./cs2110-vbam-sdl.nix { inherit pkgs; };
   nin10kit = import ./nin10kit.nix { inherit pkgs; };
+
+  makeGBA = import ./makeGBA.nix {
+    inherit pkgs;
+    inherit cs2110-vbam-sdl cs2110-gba-linker-script nin10kit;
+  };
 }
 
