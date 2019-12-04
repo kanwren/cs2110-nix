@@ -17,5 +17,20 @@ rec {
     inherit pkgs;
     inherit cs2110-vbam-sdl cs2110-gba-linker-script nin10kit;
   };
+
+  # Basic environment for homework hacking
+  env = pkgs.mkShell {
+    buildInputs = with pkgs; [
+      cmake
+      gcc
+      gdb
+      valgrind
+
+      complx-tools
+      cs2110-vbam-sdl
+      nin10kit
+    ];
+  };
+
 }
 
