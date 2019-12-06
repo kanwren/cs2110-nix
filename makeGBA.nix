@@ -4,8 +4,8 @@
 , cs2110-vbam-sdl, cs2110-gba-linker-script, nin10kit
 }:
 
-{ name                      # the name of the derivation to build
-, src                       # the directory containing the Makefile
+{ src                       # the directory containing the Makefile
+, name ? baseNameOf src     # the name of the derivation to build
 , executableName            # the name of the executable to produce
 , gbaName ? executableName  # the name of the .gba file produced
 , targets ? []              # make targets
