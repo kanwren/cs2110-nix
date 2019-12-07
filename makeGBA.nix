@@ -17,6 +17,8 @@ let drv = stdenv.mkDerivation {
   inherit name;
 
   buildInputs = [
+    makeWrapper
+
     cmake
     mednafen
     gcc-arm-embedded
@@ -43,11 +45,11 @@ let drv = stdenv.mkDerivation {
     mv mednafen-09x.cfg $out
     mv ${gbaName}.gba $out
 
-    cat << EOF >> $out/bin/${executableName}
-    #!${stdenv.shell}
-    MEDNAFEN_HOME=$out exec ${mednafen}/bin/mednafen $out/${gbaName}.gba
-    EOF
-    chmod +x $out/bin/${executableName}
+    makeWrapper \
+      ${mednafen}/bin/mednafen \
+      $out/bin/${executableName} \
+      --set MEDNAFEN_HOME $out \
+      --add-flags "$out/${gbaName}.gba"
   '';
 };
 in drv.overrideAttrs (_: attrs)
