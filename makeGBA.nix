@@ -1,6 +1,8 @@
 # A builder for GBA assignments
 
-{ pkgs
+{ stdenv
+, makeWrapper, cmake
+, mednafen, gcc-arm-embedded
 , cs2110-vbam-sdl, cs2110-gba-linker-script, nin10kit
 }:
 
@@ -12,7 +14,6 @@
 , attrs ? {}                # attributes to override in stdenv.mkDerivation
 }:
 
-with pkgs;
 let drv = stdenv.mkDerivation {
   inherit name;
 

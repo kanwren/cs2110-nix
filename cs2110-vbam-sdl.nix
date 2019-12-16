@@ -1,6 +1,8 @@
-{ pkgs }:
+{ stdenv
+, cmake
+, zlib, libpng, glfw3, SDL
+}:
 
-with pkgs;
 stdenv.mkDerivation {
   name = "cs2110-vbam-sdl";
   nativeBuildInputs = [ cmake ];

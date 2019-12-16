@@ -1,6 +1,8 @@
-{ pkgs }:
+{ stdenv, fetchFromGitHub
+, cmake, pkgconfig
+, boost, wxGTK31, glib, pcre
+}:
 
-with pkgs;
 stdenv.mkDerivation {
   name = "complx-tools";
   # http://ppa.launchpad.net/tricksterguy87/ppa-gt-cs2110/ubuntu/pool/main/c/complx-tools/complx-tools_4.18.2.orig.tar.bz2

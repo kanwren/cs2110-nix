@@ -9,6 +9,6 @@ in
 fetchNixpkgs {
   owner = "nixos";
   repo = "nixpkgs";
-  rev = "c768e2338f948d7cf0fc37e0bbfa9acec4b07bfa";
-  sha256 = "1156qpbhh0xxlwq9ai0pkhapczjm5d2ajwr5j3fr0j3yb9giw1av";
+  rev = "3ad650a14b0477a0df2795abe185c66849a5012d";
+  sha256 = "06g6frrs8l9p19kb8jz38fmpcckfqkqzk6kxd10kz5497h22ai9b";
 }

@@ -7,14 +7,13 @@
 }:
 
 rec {
-  complx-tools = import ./complx-tools.nix { inherit pkgs; };
+  complx-tools = pkgs.callPackage (import ./complx-tools.nix) {};
 
-  cs2110-gba-linker-script = import ./cs2110-gba-linker-script.nix { inherit pkgs; };
-  cs2110-vbam-sdl = import ./cs2110-vbam-sdl.nix { inherit pkgs; };
-  nin10kit = import ./nin10kit.nix { inherit pkgs; };
+  cs2110-gba-linker-script = pkgs.callPackage (import ./cs2110-gba-linker-script.nix) {};
+  cs2110-vbam-sdl = pkgs.callPackage (import ./cs2110-vbam-sdl.nix) {};
+  nin10kit = pkgs.callPackage (import ./nin10kit.nix) {};
 
-  makeGBA = import ./makeGBA.nix {
-    inherit pkgs;
+  makeGBA = pkgs.callPackage (import ./makeGBA.nix) {
     inherit cs2110-vbam-sdl cs2110-gba-linker-script nin10kit;
   };
 

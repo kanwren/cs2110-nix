@@ -12,9 +12,8 @@
 # Make sure that the Makefile uses an overridable LINKSCRIPT_DIR instead of
 # hardcoding /opt/cs2110-tools
 
-{ pkgs }:
+{ stdenv }:
 
-with pkgs;
 stdenv.mkDerivation {
   name = "cs2110-gba-linker-script";
   src = (builtins.fetchTarball {

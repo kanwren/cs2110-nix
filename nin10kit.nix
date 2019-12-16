@@ -1,6 +1,8 @@
-{ pkgs }:
+{ stdenv, fetchFromGitHub
+, cmake, pkgconfig
+, wxGTK31, imagemagick
+}:
 
-with pkgs;
 stdenv.mkDerivation {
   name = "nin10kit";
   nativeBuildInputs = [
