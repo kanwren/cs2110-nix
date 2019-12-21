@@ -7,6 +7,16 @@
 }:
 
 rec {
+  # The cs2110 docker image itself
+  docker-image = pkgs.callPackage (import ./docker-image.nix) {};
+
+  # Wrapper script to manage the cs2110 docker image
+  # Override enableDockerMachine to true if you're using docker-machine with a
+  # non-localhost default IP
+  cs2110docker = pkgs.callPackage (import ./cs2110docker.nix) {
+    inherit docker-image;
+  };
+
   complx-tools = pkgs.callPackage (import ./complx-tools.nix) {};
 
   cs2110-gba-linker-script = pkgs.callPackage (import ./cs2110-gba-linker-script.nix) {};
