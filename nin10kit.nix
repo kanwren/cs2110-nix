@@ -23,9 +23,9 @@ stdenv.mkDerivation {
     sha256 = "1z3kfxqvakx7wkwwcjw1nmp3lg121a56bcw5g1sh9kvmmi2az4fl";
   };
   installPhase = ''
-    mkdir -p $out/bin
-    cp nin10kit $out/bin
-    cp nin10kitgui $out/bin
+    mkdir -p "$out/bin"
+    cp nin10kit "$out/bin"
+    cp nin10kitgui "$out/bin"
   '';
 }
 

@@ -30,7 +30,6 @@ let drv = stdenv.mkDerivation {
   ];
 
   inherit src;
-
   configurePhase = "mkdir -p $out";
 
   buildPhase = ''
@@ -42,14 +41,14 @@ let drv = stdenv.mkDerivation {
   '';
 
   installPhase = ''
-    mkdir -p $out/bin
-    mv mednafen-09x.cfg $out
-    mv ${gbaName}.gba $out
+    mkdir -p "$out/bin"
+    mv "mednafen-09x.cfg" "$out"
+    mv "${gbaName}.gba" "$out"
 
     makeWrapper \
-      ${mednafen}/bin/mednafen \
-      $out/bin/${executableName} \
-      --set MEDNAFEN_HOME $out \
+      "${mednafen}/bin/mednafen" \
+      "$out/bin/${executableName}" \
+      --set MEDNAFEN_HOME "$out" \
       --add-flags "$out/${gbaName}.gba"
   '';
 };

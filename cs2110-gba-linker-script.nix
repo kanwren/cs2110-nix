@@ -32,7 +32,7 @@ stdenv.mkDerivation {
   '';
 
   installPhase = ''
-    mkdir $out
-    mv cs2110-tools/* $out
+    mkdir -p "$out"
+    mv cs2110-tools/* "$out"
   '';
 }

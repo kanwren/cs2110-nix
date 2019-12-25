@@ -18,8 +18,8 @@ stdenv.mkDerivation {
     sha256 = "0lrbnwxkxsjryynvr18lgf7wgi39hlvmkl86wvnc55h2lrk22a8a";
   };
   installPhase = ''
-    mkdir -p $out/bin
-    mv vbam $out/bin
+    mkdir -p "$out/bin"
+    mv vbam "$out/bin"
   '';
 }
 
