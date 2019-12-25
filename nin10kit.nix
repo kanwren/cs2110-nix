@@ -11,6 +11,8 @@ stdenv.mkDerivation {
   ];
   buildInputs = [
     wxGTK31
+  ];
+  propagatedBuildInputs = [
     imagemagick
   ];
   # http://ppa.launchpad.net/tricksterguy87/ppa-gt-cs2110/ubuntu/pool/main/n/nin10kit/nin10kit_1.7.1.orig.tar.bz2
