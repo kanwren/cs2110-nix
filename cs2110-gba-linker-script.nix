@@ -12,7 +12,9 @@
 # Make sure that the Makefile uses an overridable LINKSCRIPT_DIR instead of
 # hardcoding /opt/cs2110-tools
 
-{ stdenv }:
+{ stdenv
+, gcc-arm-embedded
+}:
 
 stdenv.mkDerivation {
   name = "cs2110-gba-linker-script";
@@ -21,18 +23,22 @@ stdenv.mkDerivation {
     sha256 = "1nkid5n43h75nqa8acg9p91mpd0bbqn7nhsp0fbm6xmlad13231c";
   });
 
-  # The tools assume where they're going to be installed by apt, and where
-  # library dependencies are, so we have to modify the source code in order to
-  # be able to override those environment variables with information from nix
-  buildPhase = ''
-    sed -i "s/LINKSCRIPT_DIR =/LINKSCRIPT_DIR ?=/g" cs2110-tools/GBAVariables.mak
-    sed -i "s/ARMINC =/ARMINC ?=/g" cs2110-tools/GBAVariables.mak
-    sed -i "s/ARMLIB =/ARMLIB ?=/g" cs2110-tools/GBAVariables.mak
-    sed -i "s/GCCLIB =/GCCLIB ?=/g" cs2110-tools/GBAVariables.mak
-  '';
+  propagatedBuildInputs = [ gcc-arm-embedded ];
 
   installPhase = ''
     mkdir -p "$out"
     mv cs2110-tools/* "$out"
+  '';
+
+  # The tools assume where they're going to be installed by apt, and where
+  # library dependencies are, so we have to modify the source code in order to
+  # be able to override those environment variables with information from nix
+  fixupPhase = ''
+    sed -i '
+      s@^LINKSCRIPT_DIR =@LINKSCRIPT_DIR ?=@g;
+      s@^ARMINC *=.*$@ARMINC ?= ${gcc-arm-embedded}/arm-none-eabi/include@g;
+      s@^ARMLIB *=.*$@ARMLIB ?= ${gcc-arm-embedded}/arm-none-eabi/lib@g;
+      s@^GCCLIB *=.*$@GCCLIB ?= ${gcc-arm-embedded}/lib/gcc/arm-none-eabi/'"$(arm-none-eabi-gcc -dumpversion)"'@g;
+    ' "$out/GBAVariables.mak"
   '';
 }

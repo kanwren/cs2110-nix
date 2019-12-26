@@ -33,9 +33,6 @@ let drv = stdenv.mkDerivation {
   configurePhase = "mkdir -p $out";
 
   buildPhase = ''
-    ARMINC="${gcc-arm-embedded}/arm-none-eabi/include" \
-    ARMLIB="${gcc-arm-embedded}/arm-none-eabi/lib" \
-    GCCLIB=${gcc-arm-embedded}/lib/gcc/arm-none-eabi/$(arm-none-eabi-gcc -dumpversion) \
     LINKSCRIPT_DIR=${cs2110-gba-linker-script} \
     make ${builtins.toString targets}
   '';
