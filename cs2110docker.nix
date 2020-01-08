@@ -35,9 +35,14 @@ in writeShellScriptBin "cs2110docker" ''
       echo "No existing CS 2110 containers."
     fi
   else
-    echo "Loading ${docker-image.imageName}"
 
-    ${docker}/bin/docker load -i ${docker-image}
+    dockerImages-$(${docker}/bin/docker image ls | grep "$imageName" | awk '{print $1}')
+    if [ -n "$dockerImage" ]; then
+      echo "Loading ${docker-image.imageName}"
+      ${docker}/bin/docker load -i ${docker-image}
+    else
+      echo "Docker image loaded"
+    fi
 
     if [ $? -ne 0 ]; then
       >&2 echo "Failed to load ${docker-image.imageName}"
