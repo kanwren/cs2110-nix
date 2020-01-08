@@ -36,16 +36,11 @@ in writeShellScriptBin "cs2110docker" ''
     fi
   else
 
-    dockerImages-$(${docker}/bin/docker image ls | grep "$imageName" | awk '{print $1}')
-    if [ -n "$dockerImage" ]; then
-      echo "Loading ${docker-image.imageName}"
-      ${docker}/bin/docker load -i ${docker-image}
-    else
-      echo "Docker image loaded"
-    fi
+    echo "Pulling down most recent image of $imageName"
+    docker pull "$imageName"
 
     if [ $? -ne 0 ]; then
-      >&2 echo "Failed to load ${docker-image.imageName}"
+      >&2 echo "ERROR: Unable to pull down the most recent image of $imageName"
       exit 1
     fi
 
