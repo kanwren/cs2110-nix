@@ -23,6 +23,8 @@ let
   };
 
   cs2110pkgs = rec {
+    CircuitSim = pkgs.callPackage (import ./circuitsim.nix) {};
+
     complx-tools = pkgs.callPackage (import ./complx-tools.nix) {};
 
     cs2110-gba-linker-script = pkgs.callPackage (import ./cs2110-gba-linker-script.nix) {};
@@ -45,6 +47,7 @@ let
       complx-tools
       cs2110-vbam-sdl
       nin10kit
+      CircuitSim
     ]) ++ lib.optional enableDocker dockerPkgs.cs2110docker;
   };
 
