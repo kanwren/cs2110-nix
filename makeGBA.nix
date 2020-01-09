@@ -1,6 +1,6 @@
 # A builder for GBA assignments
 
-{ stdenv
+{ stdenv, lib
 , makeWrapper, cmake
 , mednafen, gcc-arm-embedded
 , cs2110-vbam-sdl, cs2110-gba-linker-script, nin10kit
@@ -10,6 +10,7 @@
 , name ? baseNameOf src     # the name of the derivation to build
 , executableName            # the name of the executable to produce
 , gbaName ? executableName  # the name of the .gba file produced
+, cfgFiles ? []             # .cfg files for mednafen to use
 , targets ? []              # make targets
 , attrs ? {}                # attributes to override in stdenv.mkDerivation
 }:
@@ -30,7 +31,7 @@ let drv = stdenv.mkDerivation {
   ];
 
   inherit src;
-  configurePhase = "mkdir -p $out";
+  configurePhase = "true";
 
   buildPhase = ''
     LINKSCRIPT_DIR=${cs2110-gba-linker-script} \
@@ -39,7 +40,7 @@ let drv = stdenv.mkDerivation {
 
   installPhase = ''
     mkdir -p "$out/bin"
-    mv "mednafen-09x.cfg" "$out"
+    ${lib.concatMapStringsSep "\n" (f: "cp ${f} \"$out\"") cfgFiles}
     mv "${gbaName}.gba" "$out"
 
     makeWrapper \
