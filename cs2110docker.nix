@@ -46,9 +46,9 @@ in writeShellScriptBin "cs2110docker" ''
 
     echo "Starting up new CS 2110 Docker Container:"
     if [ "$1" = "-it" ]; then
-      ${docker}/bin/docker run --rm -p 6901:6901 -p 5901:5901 -v "$(pwd)":/cs2110/host/ --cap-add=SYS_PTRACE --security-opt seccomp=unconfined -it  --entrypoint /bin/bash "$imageName"
+      ${docker}/bin/docker run --rm -p 127.0.0.1:6901:6901 -p 127.0.0.1:5901:5901 -v "$(pwd)":/cs2110/host/ --cap-add=SYS_PTRACE --security-opt seccomp=unconfined -it  --entrypoint /bin/bash "$imageName"
     else
-      ${docker}/bin/docker run -d -p 6901:6901 -p 5901:5901 -v "$(pwd)":/cs2110/host/ --cap-add=SYS_PTRACE --security-opt seccomp=unconfined "$imageName"
+      ${docker}/bin/docker run -d -p 127.0.0.1:6901:6901 -p 127.0.0.1:5901:5901 -v "$(pwd)":/cs2110/host/ --cap-add=SYS_PTRACE --security-opt seccomp=unconfined "$imageName"
 
       successfulRun=$?
 
