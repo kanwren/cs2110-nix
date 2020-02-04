@@ -9,14 +9,18 @@ let
   findDefaultIp =
     if enableDockerMachine
     then ''
-      ipaddress="$(${docker-machine}/bin/docker-machine ip default 2>/dev/null)"
+      ipAddress="$(${docker-machine}/bin/docker-machine ip default 2>/dev/null)"
       foundip=$?
       if [ $foundip -ne 0 ]; then
-        ipaddress="localhost"
+        ipAddress="127.0.0.1"
+        displayIp="localhost"
+      else
+        displayIp="$ipAddress"
       fi
     ''
     else ''
-      ipaddress="localhost"
+      ipAddress="127.0.0.1"
+      displayIp="localhost"
     '';
 in writeShellScriptBin "cs2110docker" ''
   imageName="${docker-image.imageName}"
@@ -46,16 +50,16 @@ in writeShellScriptBin "cs2110docker" ''
 
     echo "Starting up new CS 2110 Docker Container:"
     if [ "$1" = "-it" ]; then
-      ${docker}/bin/docker run --rm -p 127.0.0.1:6901:6901 -p 127.0.0.1:5901:5901 -v "$(pwd)":/cs2110/host/ --cap-add=SYS_PTRACE --security-opt seccomp=unconfined -it  --entrypoint /bin/bash "$imageName"
+      ${docker}/bin/docker run --rm -p $ipAddress:6901:6901 -p $ipAddress:5901:5901 -v "$(pwd)":/cs2110/host/ --cap-add=SYS_PTRACE --security-opt seccomp=unconfined -it  --entrypoint /bin/bash "$imageName"
     else
-      ${docker}/bin/docker run -d -p 127.0.0.1:6901:6901 -p 127.0.0.1:5901:5901 -v "$(pwd)":/cs2110/host/ --cap-add=SYS_PTRACE --security-opt seccomp=unconfined "$imageName"
+      ${docker}/bin/docker run -d -p $ipAddress:6901:6901 -p $ipAddress:5901:5901 -v "$(pwd)":/cs2110/host/ --cap-add=SYS_PTRACE --security-opt seccomp=unconfined "$imageName"
 
       successfulRun=$?
 
       ${findDefaultIp}
 
       if [ $successfulRun -eq 0 ]; then
-        echo "Successfully launched CS 2110 Docker container. Please go to http://$ipaddress:6901/vnc.html to access it."
+        echo "Successfully launched CS 2110 Docker container. Please go to http://$displayIp:6901/vnc.html to access it."
       else
         echo "ERROR: Unable to launch CS 2110 Docker container."
       fi
