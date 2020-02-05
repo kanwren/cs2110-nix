@@ -1,5 +1,6 @@
 { stdenv, lib, makeWrapper, makeDesktopItem
 , openjdk11
+, gtk3
 , createDesktop ? true
 }:
 
@@ -12,6 +13,7 @@ let
     desktopName = pname;
     genericName = pname;
   };
+  schemaPath = "${gtk3}/share/gsettings-schemas/gtk+3-${gtk3.version}";
 in stdenv.mkDerivation (rec {
   inherit pname version;
 
@@ -25,6 +27,7 @@ in stdenv.mkDerivation (rec {
     makeWrapper \
       "${openjdk11}/bin/java" \
       "$out/bin/${pname}" \
+      --prefix XDG_DATA_DIRS : "${schemaPath}" \
       --add-flags "-jar ${./CircuitSim1.8.2.jar}"
   '' + lib.optionalString createDesktop ''
     mkdir -p "$out/share/applications"
