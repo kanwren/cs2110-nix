@@ -40,7 +40,7 @@ let drv = stdenv.mkDerivation {
 
   installPhase = ''
     mkdir -p "$out/bin"
-    ${lib.concatMapStringsSep "\n" (f: "cp ${f} \"$out\"") cfgFiles}
+    ${lib.concatMapStringsSep "\n" (f: "cp ${f} \"$out/${builtins.baseNameOf f}\"") cfgFiles}
     mv "${gbaName}.gba" "$out"
 
     makeWrapper \
