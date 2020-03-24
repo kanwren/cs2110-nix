@@ -10,7 +10,7 @@
 , name ? baseNameOf src     # the name of the derivation to build
 , executableName            # the name of the executable to produce
 , gbaName ? executableName  # the name of the .gba file produced
-, cfgFiles ? []             # .cfg files for mednafen to use
+, cfgFile ? null            # .cfg file for mednafen to use
 , targets ? []              # make targets
 , attrs ? {}                # attributes to override in stdenv.mkDerivation
 }:
@@ -40,7 +40,7 @@ let drv = stdenv.mkDerivation {
 
   installPhase = ''
     mkdir -p "$out/bin"
-    ${lib.concatMapStringsSep "\n" (f: "cp ${f} \"$out/${builtins.baseNameOf f}\"") cfgFiles}
+    ${lib.optionalString (cfgFile != null) ("cp ${cfgFile} \"$out/mednafen-09x.cfg\"")}
     mv "${gbaName}.gba" "$out"
 
     makeWrapper \
