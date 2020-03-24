@@ -49,6 +49,10 @@ let
       nin10kit
       CircuitSim
     ]) ++ lib.optional enableDocker dockerPkgs.cs2110docker;
+
+    shellHook = ''
+      export LINKSCRIPT_DIR="${cs2110pkgs.cs2110-gba-linker-script}"
+    '';
   };
 
 in
