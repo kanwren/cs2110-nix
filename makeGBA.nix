@@ -7,8 +7,8 @@
 }:
 
 { src                       # the directory containing the Makefile
-, name ? baseNameOf src     # the name of the derivation to build
-, executableName            # the name of the executable to produce
+, name                      # the name of the derivation to build
+, executableName ? name     # the name of the executable to produce
 , gbaName ? executableName  # the name of the .gba file produced
 , cfgFile ? null            # .cfg file for mednafen to use
 , targets ? []              # make targets
