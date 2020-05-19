@@ -39,6 +39,7 @@ let
   # Basic environment for homework hacking
   env = pkgs.mkShell {
     buildInputs = (with pkgs; [
+      openjdk8_headless
       cmake
       gcc
       gdb
