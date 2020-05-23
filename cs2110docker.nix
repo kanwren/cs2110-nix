@@ -41,7 +41,7 @@ in writeShellScriptBin "cs2110docker" ''
   else
 
     echo "Pulling down most recent image of $imageName"
-    docker pull "$imageName"
+    ${docker}/bin/docker pull "$imageName"
 
     if [ $? -ne 0 ]; then
       >&2 echo "ERROR: Unable to pull down the most recent image of $imageName"
