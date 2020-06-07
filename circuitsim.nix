@@ -23,12 +23,13 @@ in stdenv.mkDerivation (rec {
   buildPhase = "true";
 
   installPhase = ''
-    mkdir -p "$out/bin"
+    mkdir -p "$out/bin" "$out/share/java"
+    cp ${./CircuitSim.jar} "$out/share/java"
     makeWrapper \
       "${openjdk11}/bin/java" \
       "$out/bin/${pname}" \
       --prefix XDG_DATA_DIRS : "${schemaPath}" \
-      --add-flags "-jar ${./CircuitSim.jar}"
+      --add-flags "-jar $out/share/java/CircuitSim.jar"
   '' + lib.optionalString createDesktop ''
     mkdir -p "$out/share/applications"
     cp ${desktopItem}/share/applications/* "$out/share/applications"
