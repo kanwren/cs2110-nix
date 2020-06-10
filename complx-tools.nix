@@ -18,8 +18,8 @@ in stdenv.mkDerivation (rec {
   src = fetchFromGitHub {
     owner = "TricksterGuy";
     repo = "complx";
-    rev = "c6df9a46470c5ba6e7e84dcdad3c3d2b76d2a9d6";
-    sha256 = "1mh2pkl9f1hrsdgsx0xk1bcv390ld7pdcbzq6y0330b4xp3yfbqh";
+    rev = "40d07c6282e7d84d8ab77d0e1e4dd05dbac8d29d";
+    sha256 = "1fac9zakj1h31p7jmlxk3xkjcj4a1yyvag5lgkhqm0c9r5bllafa";
   };
 
   nativeBuildInputs = [ cmake pkgconfig ];
