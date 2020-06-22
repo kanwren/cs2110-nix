@@ -35,5 +35,25 @@ rec {
   makeGBA = pkgs.callPackage ./makeGBA.nix {
     inherit cs2110-vbam-sdl cs2110-gba-linker-script nin10kit;
   };
+
+  shell = pkgs.mkShell {
+    buildInputs = with pkgs; [
+      openjdk11
+      CircuitSim
+
+      complx-tools
+
+      gnumake
+      gcc
+      gdb
+      valgrind
+
+      nin10kit
+    ];
+
+    shellHook = ''
+      export LINKSCRIPT_DIR="${cs2110-gba-linker-script}"
+    '';
+  };
 }
 
