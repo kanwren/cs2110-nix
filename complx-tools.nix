@@ -20,7 +20,7 @@ in stdenv.mkDerivation rec {
     owner = "TricksterGuy";
     repo = "complx";
     rev = version;
-    sha256 = "1fac9zakj1h31p7jmlxk3xkjcj4a1yyvag5lgkhqm0c9r5bllafa";
+    sha256 = "1f2p0hkfklyy4vj95sq3pid3s44xqq0z8qkh6pwgcx4wz43khjzl";
   };
 
   nativeBuildInputs = [ cmake pkgconfig ];
