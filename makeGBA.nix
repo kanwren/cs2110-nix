@@ -34,8 +34,7 @@ let drv = stdenv.mkDerivation {
   configurePhase = "true";
 
   buildPhase = ''
-    LINKSCRIPT_DIR=${cs2110-gba-linker-script} \
-    make ${builtins.toString targets}
+    make ${builtins.toString targets} LINKSCRIPT_DIR=${cs2110-gba-linker-script}
   '';
 
   installPhase = ''
