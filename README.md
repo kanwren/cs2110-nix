@@ -18,24 +18,20 @@ let
   }) {};
 in pkgs.mkShell {
   buildInputs = (with pkgs; [
-    cmake
+    gnumake
     gcc
     gdb
     valgrind
   ]) ++ (with cs2110pkgs; [
     complx-tools
-    cs2110-vbam-sdl
-    nin10kit
     CircuitSim
     cs2110docker
   ]);
-
-  # See note in cs2110-gba-linker-script.nix for why this is important
-  shellHook = ''
-    export LINKSCRIPT_DIR="${cs2110pkgs.cs2110-gba-linker-script}"
-  '';
 }
 ```
+
+Two shells are provided; `shell` is the environment good enough for most
+homeworks, and `gba-shell` is a shell specifically for the GBA homework.
 
 Currently, the following things are provided:
 - `docker-image`: The docker image itself. You can build it and load it with `docker load < result`.
