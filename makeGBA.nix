@@ -1,7 +1,7 @@
 # A builder for GBA assignments
 
 { stdenv, lib
-, makeWrapper, cmake
+, makeWrapper, gnumake
 , mednafen, gcc-arm-embedded
 , cs2110-vbam-sdl, cs2110-gba-linker-script, nin10kit
 }:
@@ -21,7 +21,7 @@ let drv = stdenv.mkDerivation {
   buildInputs = [
     makeWrapper
 
-    cmake
+    gnumake
     mednafen
     gcc-arm-embedded
 

@@ -47,10 +47,17 @@ rec {
       gcc
       gdb
       valgrind
-
-      nin10kit
     ];
+  };
 
+  gba-shell = pkgs.mkShell {
+    buildInputs = with pkgs; [
+      gnumake
+      mednafen
+      gcc-arm-embedded
+      nin10kit
+      cs2110-vbam-sdl
+    ];
     shellHook = ''
       export LINKSCRIPT_DIR="${cs2110-gba-linker-script}"
     '';
