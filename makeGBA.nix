@@ -30,7 +30,7 @@ let drv = stdenv.mkDerivation {
     nin10kit
   ];
 
-  inherit src;
+  src = lib.cleanSource src;
   configurePhase = "true";
 
   buildPhase = ''
