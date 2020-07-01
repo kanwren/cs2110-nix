@@ -3,7 +3,9 @@
 # from his GitHub or from his PPA at
 # http://ppa.launchpad.net/tricksterguy87/ppa-gt-cs2110/ubuntu/
 
-{ pkgs ? let nixpkgs = import ./nixpkgs.nix; in import nixpkgs {}
+{ pkgs ? let nixpkgs = import ./nixpkgs.nix; in import nixpkgs {
+    overlays = [ (import ./mednafen-overlay.nix) ];
+  }
 }:
 
 rec {
