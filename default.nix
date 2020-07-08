@@ -50,6 +50,9 @@ rec {
       gdb
       valgrind
     ];
+
+    # -D_FORTIFY_SOURCE doesn't allow compiling with -O0
+    hardeningDisable = [ "fortify" ];
   };
 
   gba-shell = pkgs.mkShell {
@@ -60,9 +63,12 @@ rec {
       nin10kit
       cs2110-vbam-sdl
     ];
+
     shellHook = ''
       export LINKSCRIPT_DIR="${cs2110-gba-linker-script}"
     '';
+
+    hardeningDisable = [ "fortify" ];
   };
 }
 
