@@ -24,7 +24,7 @@ in stdenv.mkDerivation (rec {
 
   installPhase = ''
     mkdir -p "$out/bin" "$out/share/java"
-    cp ${./CircuitSim.jar} "$out/share/java"
+    cp ${./CircuitSim.jar} "$out/share/java/CircuitSim.jar"
     makeWrapper \
       "${openjdk11}/bin/java" \
       "$out/bin/${pname}" \
