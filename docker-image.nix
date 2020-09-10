@@ -2,12 +2,11 @@
 }:
 
 dockerTools.pullImage {
-  imageName = "gibrane/cs2110docker";
-  imageDigest = "sha256:5470866eee66ba67f93fa4011476ac0757ed5202b879605003b49f6734e3b42f";
-  sha256 = "0wrqslyddw4dvnfhq4z0add9p54pc58hq7jh6xp1m1hnrsps3bz5";
+  imageName = "gtcs2110/cs2110docker";
+  imageDigest = "sha256:7ed392a216f4ee6bc9351b8edeb69fd414c2d15ef530800709fbaa284f84b1eb";
+  sha256 = "04dfjlm0bg6n4bxb7hdn08563pgh4da5yh54r5rk39zzcgrlv0an";
 
-  finalImageName = "gibrane/cs2110docker";
-  finalImageTag = "latest";
+  finalImageName = "gtcs2110/cs2110docker";
 
   os = "linux";
   arch = "amd64";
