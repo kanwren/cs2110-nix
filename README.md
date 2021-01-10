@@ -1,6 +1,6 @@
 # cs2110-nix
 
-Nix derivations for the CS 2110 toolchain
+Nix derivations for the Georgia Tech CS 2110 toolchain
 
 ### Usage
 
