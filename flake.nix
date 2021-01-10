@@ -11,6 +11,9 @@
       };
     in {
       packages = import ./default.nix { inherit pkgs; };
+      overlay = pkgs-self: pkgs-super: {
+        cs2110 = self.packages.${system};
+      };
     }
   );
 }
