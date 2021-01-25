@@ -12,7 +12,7 @@
     in {
       packages = import ./default.nix { inherit pkgs; };
       overlay = pkgs-self: pkgs-super: {
-        cs2110 = self.packages.${system};
+        cs2110 = import ./default.nix { pkgs = pkgs-self; };
       };
     }
   );
