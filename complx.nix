@@ -13,21 +13,21 @@ let
     genericName = "Complx";
   };
 in stdenv.mkDerivation rec {
-  pname = "complx-tools";
-  version = "4.18.4";
+  pname = "complx";
+  version = "4.19.0";
 
   src = fetchFromGitHub {
     owner = "TricksterGuy";
     repo = "complx";
     rev = version;
-    sha256 = "1f2p0hkfklyy4vj95sq3pid3s44xqq0z8qkh6pwgcx4wz43khjzl";
+    sha256 = "037saps2knqvdc7lvrba3qdfqcbjskqcvxmqc2lppcrvshsg5w3m";
   };
 
   nativeBuildInputs = [ cmake pkgconfig ];
   buildInputs = [ boost wxGTK31 glib pcre ];
 
   meta = with lib; {
-    homepage = https://github.com/TricksterGuy/complx;
+    homepage = "https://github.com/TricksterGuy/complx";
     description = "Extensible LC-3 simulator (GUI and CLI), assembler, and autograder/test framework";
     license = licenses.gpl3;
   };

@@ -21,7 +21,7 @@ rec {
   CircuitSim = pkgs.callPackage ./circuitsim.nix {};
 
   # Complx, for LC-3
-  complx-tools = pkgs.callPackage ./complx-tools.nix {};
+  complx = pkgs.callPackage ./complx.nix {};
 
   # Tools used for building GBA games
   cs2110-gba-linker-script = pkgs.callPackage ./cs2110-gba-linker-script.nix {};

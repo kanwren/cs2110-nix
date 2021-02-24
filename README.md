@@ -23,7 +23,7 @@ in pkgs.mkShell {
     gdb
     valgrind
   ]) ++ (with cs2110pkgs; [
-    complx-tools
+    complx
     CircuitSim
     cs2110docker
   ]);
@@ -46,7 +46,7 @@ cs2110pkgs.cs2110docker.override { enableDockerMachine = true; }
 - `CircuitSim`: A wrapper application for running a CS2110-compliant
   `CircuitSim.jar`. It will run it using the correct Java version and set the
   necessary GTK environment variables.
-- `complx-tools`: Complx, for LC-3
+- `complx`: Complx, for LC-3
 - `cs2110-gba-linker-script`: Some files for building GBA games. Note that
   normal 2110 Makefiles assume they're in the Docker container, and so use an
   absolute path to these files. See the note in `cs2110-gba-linker-script.nix`
