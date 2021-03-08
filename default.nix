@@ -22,6 +22,7 @@ rec {
 
   # Complx, for LC-3
   complx = pkgs.callPackage ./complx.nix {};
+  complx-tools = pkgs.callPackage ./complx-tools.nix {};
 
   # Tools used for building GBA games
   cs2110-gba-linker-script = pkgs.callPackage ./cs2110-gba-linker-script.nix {};
