@@ -14,13 +14,13 @@ let
   };
 in stdenv.mkDerivation rec {
   pname = "complx";
-  version = "4.19.0";
+  version = "4.19.2";
 
   src = fetchFromGitHub {
     owner = "TricksterGuy";
     repo = "complx";
     rev = version;
-    sha256 = "037saps2knqvdc7lvrba3qdfqcbjskqcvxmqc2lppcrvshsg5w3m";
+    sha256 = "sha256-KjMPxBpeFOf3PW2mvZfWs8lKFGN/5IMMAeRD+EisiDY=";
   };
 
   nativeBuildInputs = [ cmake pkgconfig ];
