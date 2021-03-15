@@ -12,7 +12,7 @@ let
     desktopName = "Complx";
     genericName = "Complx";
   };
-in stdenv.mkDerivation rec {
+in stdenv.mkDerivation (rec {
   pname = "complx-tools";
   version = "unstable_2021-02-22";
 
@@ -32,15 +32,14 @@ in stdenv.mkDerivation rec {
   '';
 
   meta = with lib; {
-    homepage = "https://github.com/TricksterGuy/complx";
+    homepage = "https://github.com/TricksterGuy/complx-tools";
     description = "Extensible LC-3 simulator (GUI and CLI), assembler, and autograder/test framework";
     license = licenses.gpl3;
   };
-
 } // lib.optionalAttrs createDesktop {
   inherit desktopItem;
   postInstall = ''
     mkdir -p "$out/share/applications"
     cp ${desktopItem}/share/applications/* "$out/share/applications"
   '';
-}
+})

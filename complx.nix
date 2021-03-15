@@ -12,7 +12,7 @@ let
     desktopName = "Complx";
     genericName = "Complx";
   };
-in stdenv.mkDerivation rec {
+in stdenv.mkDerivation (rec {
   pname = "complx";
   version = "4.19.2";
 
@@ -38,4 +38,4 @@ in stdenv.mkDerivation rec {
     mkdir -p "$out/share/applications"
     cp ${desktopItem}/share/applications/* "$out/share/applications"
   '';
-}
+})
