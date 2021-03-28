@@ -13,21 +13,24 @@
 # hardcoding /opt/cs2110-tools
 
 { stdenv
+, runCommandNoCCLocal
 , gcc-arm-embedded
+, binutils, gnutar
 }:
 
 stdenv.mkDerivation {
   name = "cs2110-gba-linker-script";
-  src = (builtins.fetchTarball {
-    url = "http://ppa.launchpad.net/tricksterguy87/ppa-gt-cs2110/ubuntu/pool/main/c/cs2110-gba-linker-script/cs2110-gba-linker-script_1.1.2.orig.tar.bz2";
-    sha256 = "1nkid5n43h75nqa8acg9p91mpd0bbqn7nhsp0fbm6xmlad13231c";
-  });
+  src = runCommandNoCCLocal "extract-linker-script" { buildInputs = [ binutils gnutar ]; } ''
+    mkdir -p "$out"
+    ar x --output="$out" ${./res/cs2110-gba-linker-script_1.1.2-0.deb}
+  '';
 
   propagatedBuildInputs = [ gcc-arm-embedded ];
 
   installPhase = ''
+    tar xvf data.tar.xz
     mkdir -p "$out"
-    mv cs2110-tools/* "$out"
+    mv opt/cs2110-tools/* "$out"
   '';
 
   # The tools assume where they're going to be installed by apt, and where
