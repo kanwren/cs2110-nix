@@ -14,13 +14,13 @@ let
   };
 in stdenv.mkDerivation (rec {
   pname = "complx-tools";
-  version = "unstable_2021-02-22";
+  version = "unstable_2021-05-02";
 
   src = fetchFromGitHub {
     owner = "TricksterGuy";
     repo = "complx-tools";
-    rev = "c6188fb81b63a805bb27d5b7104ce8346f79240a";
-    sha256 = "sha256-5bdzASkEHxIh8g4d0JcOzbMiaSeM9snx/8RVIrkRszQ=";
+    rev = "8c496ffdf9c173d3a89558e739aafa9a9931d5d3";
+    sha256 = "sha256-hpib7ZXM0Qlb4wS3TOww4xAJ+j6nKJzG4A/IHFmTQEA=";
   };
 
   nativeBuildInputs = [ cmake pkgconfig ];
