@@ -26,8 +26,6 @@ rec {
 
   # Tools used for building GBA games
   cs2110-gba-linker-script = pkgs.callPackage ./cs2110-gba-linker-script.nix {};
-  # vba-m, the old emulator
-  cs2110-vbam-sdl = pkgs.callPackage ./cs2110-vbam-sdl.nix {};
   # nin10kit, utilities for making GBA games
   nin10kit = pkgs.callPackage ./nin10kit.nix {};
 }
