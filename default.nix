@@ -7,15 +7,8 @@
 }:
 
 rec {
-  # The cs2110 docker image itself
-  docker-image = pkgs.callPackage ./docker-image.nix {};
-
   # Wrapper script to manage the cs2110 docker image
-  # Override enableDockerMachine to true if you're using docker-machine with a
-  # non-localhost default IP
-  cs2110docker = pkgs.callPackage ./cs2110docker.nix {
-    inherit docker-image;
-  };
+  cs2110docker = pkgs.callPackage ./cs2110docker.nix {};
 
   # CS2110-compliant version of CircuitSim
   CircuitSim = pkgs.callPackage ./circuitsim.nix {};
