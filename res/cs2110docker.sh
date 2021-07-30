@@ -1,5 +1,9 @@
 #! @runtimeShell@
 
+release="stable"
+imageBaseName="gtcs2110/cs2110docker"
+imageName="${imageBaseName}:${release}"
+
 PATH="@docker@/bin${PATH:+:${PATH}}"
 
 define() { IFS=$'\n' read -r -d '' "${1}" || true; }
@@ -62,8 +66,6 @@ elif [ $# -gt 1 ]; then
   print_usage
   exit 1
 fi
-
-imageName="gtcs2110/cs2110docker"
 
 if ! docker -v >/dev/null; then
   >&2 echo "ERROR: Docker not found. Please install Docker before running this script. Refer to the CS 2110 Docker Guide."
